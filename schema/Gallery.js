@@ -7,5 +7,6 @@ module.exports = new mongoose.Schema({
     team: String,
     created_at: Date,
     image_id: String,
+    tags: String,
     id: mongoose.Schema.ObjectId
 })

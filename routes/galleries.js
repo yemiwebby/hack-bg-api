@@ -18,6 +18,7 @@ module.exports = (app) => {
               name: req.body.name,
               created_at: new Date(),
               url: result.url,
+              tags: req.body.tags,
               image_id: result.public_id
           });
           // Persist by saving
@@ -38,7 +39,7 @@ module.exports = (app) => {
     req.galleryModel.find({_id: idParam}, (err, foundImage) => {
       if (err) res.send(err)
     //   console.log(foundImage[0])
-      if(!foundImage[0]._id) return res.send('Not exst')
+      if(!foundImage[0]._id) return res.send('Not exist')
       req.cloudinary.uploader.destroy(foundImage[0].image_id, function(result) {
         console.log(result)
         req.galleryModel.remove({_id: idParam}, (err, removed) => res.json(removed));
